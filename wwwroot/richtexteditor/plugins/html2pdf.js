@@ -23,13 +23,13 @@ function RTE_Plugin_Html2PDF() {
 		editor = argeditor;
 
 		editor.attachEvent("exec_command_html2pdf", function (state, cmd, value) {
-			console.log(state, cmd, value);
+			//console.log(state, cmd, value);
 			obj.DoHtml2PDF();
 			state.returnValue = true;
 		});
 
 		editor.toolbarFactoryMap["html2pdf"] = function (cmd) {
-			//console.log(cmd);
+			////console.log(cmd);
 			var span = editor.createToolbarButton(cmd);
 			span.style.backgroundColor = ''
 			return span;
@@ -95,14 +95,14 @@ function RTE_Plugin_Html2PDF() {
 				}
 
 				var imgblob = dataURLToBlob(dataurl);
-				console.log(imgblob);
+				//console.log(imgblob);
 				var imgurl = URL.createObjectURL(imgblob);
 				img.setAttribute("src", imgurl);
 
 				var prom = win.html2pdf().set(opt).from(win.document.body).outputPdf();
 				prom.then(function (str) {
 
-					console.log("done", str.length)
+					//console.log("done", str.length)
 
 					var bin = new Array(str.length);
 					for (var i = 0; i < str.length; i++)

@@ -43,7 +43,7 @@ function RTE_Plugin_InsertEmoji() {
 			}
 			emojidata.push(emojigroup);
 		}
-		//console.log(emojidata);
+		////console.log(emojidata);
 	}
 
 	var obj = this;
@@ -72,7 +72,7 @@ function RTE_Plugin_InsertEmoji() {
 					if (e.target.nodeName == "GSPAN") {
 						editor.closeCurrentPopup();
 						var htmlcode = e.target.getAttribute("htmlcode");
-						console.log("insert emoji", htmlcode)
+						//console.log("insert emoji", htmlcode)
 						editor.insertHTML(htmlcode);
 						editor.collapse(false);
 						editor.focus();
@@ -219,7 +219,7 @@ function RTE_Plugin_InsertEmoji() {
 				var lastactivebtn = null;
 				grouppanel.onscroll = function () {
 					var ptop = grouppanel.getBoundingClientRect().top;
-					console.log(ptop);
+					//console.log(ptop);
 					if (lastactivebtn) lastactivebtn.className = "";
 					for (var bi = 0; bi < tabuibtns.length; bi++) {
 						var btn = tabuibtns[bi];

@@ -16,7 +16,7 @@ async function ShowBusinessListv2() {
             //processing: true,
             //serverSide: true,
             complete: function (xhr) {
-                //console.log(xhr);
+                ////console.log(xhr);
             },
             error: function (err) {
                 alert(err.responseText);

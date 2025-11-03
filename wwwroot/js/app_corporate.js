@@ -40,7 +40,7 @@ async function ShowPiegraphMostClickRestaurant() {
                 {
                     sum += data[x].total;
                  
-                } //console.log(sum);
+                } ////console.log(sum);
                 for (var i = 0; i < data.length; i++) {
              
                     topBusinesOutlet  = [
@@ -82,7 +82,7 @@ async function ShowPiegraphMostClickRestaurant() {
                                     : `,${color[key]} ${startingPoint} ${newValue}%`;
                             oldValue += value.totalVisit;
                         });
-                      //  console.log(styleString);
+                      //  //console.log(styleString);
                         document
                             .querySelector(`${elementContainer}`)
                             .setAttribute("style", `background: conic-gradient(${styleString})`);
@@ -91,7 +91,7 @@ async function ShowPiegraphMostClickRestaurant() {
                     const populateInfo = (elementContainer, data) => {
                         let element = document.querySelector(`${elementContainer}`);
                         data.map((value, key) => {
-                            // console.log();
+                            // //console.log();
                             element.children[key].children[1].innerText = value.name;
                             element.children[key].children[2].innerText = `${value.totalVisit}%`;
                         });
@@ -139,7 +139,7 @@ async function ShowPiegraphMostClickHospitality() {
                 var sum = 0;
                 for (var x = 3; x < data.length; x++) {
                     sum += data[x].total;
-                   // console.log(sum +"---");
+                   // //console.log(sum +"---");
                 } 
                 for (var i = 0; i < data.length; i++) {
 
@@ -182,7 +182,7 @@ async function ShowPiegraphMostClickHospitality() {
                                 : `,${color[key]} ${startingPoint} ${newValue}%`;
                         oldValue += value.totalVisit;
                     });
-                    //console.log(styleString);
+                    ////console.log(styleString);
                     document
                         .querySelector(`${elementContainer}`)
                         .setAttribute("style", `background: conic-gradient(${styleString})`);
@@ -191,7 +191,7 @@ async function ShowPiegraphMostClickHospitality() {
                 const populateInfo = (elementContainer, data) => {
                     let element = document.querySelector(`${elementContainer}`);
                     data.map((value, key) => {
-                        // console.log();
+                        // //console.log();
                         element.children[key].children[1].innerText = value.name;
                         element.children[key].children[2].innerText = `${value.totalVisit}%`;
                     });
@@ -240,7 +240,7 @@ async function ShowPiegraphMostClickStore() {
                 var sum = 0;
                 for (var x = 3; x < data.length; x++) {
                     sum += data[x].total;
-                   // console.log(sum + "---");
+                   // //console.log(sum + "---");
                 }
                 for (var i = 0; i < data.length; i++) {
 
@@ -283,7 +283,7 @@ async function ShowPiegraphMostClickStore() {
                                 : `,${color[key]} ${startingPoint} ${newValue}%`;
                         oldValue += value.totalVisit;
                     });
-                   // console.log(styleString);
+                   // //console.log(styleString);
                     document
                         .querySelector(`${elementContainer}`)
                         .setAttribute("style", `background: conic-gradient(${styleString})`);
@@ -292,7 +292,7 @@ async function ShowPiegraphMostClickStore() {
                 const populateInfo = (elementContainer, data) => {
                     let element = document.querySelector(`${elementContainer}`);
                     data.map((value, key) => {
-                        // console.log();
+                        // //console.log();
                         element.children[key].children[1].innerText = value.name;
                         element.children[key].children[2].innerText = `${value.totalVisit}%`;
                     });
@@ -333,14 +333,14 @@ async function ShowPiegraphMostClickStore() {
 // },
 // })
 // .then((response) => {
-//     console.log(response.json());
+//     //console.log(response.json());
 // })
 // .then((data) => {
 //     //handle data
 //     // 
 // })
 // .catch((error) => {
-//     console.log(error);
+//     //console.log(error);
 // });
 async function ShowOptBtype() {
   $.ajax({ url: "/Business/GetBusinessTypeList", data: {}, type: "GET", datatype: "json" }).done(function (data) {
@@ -464,7 +464,7 @@ async function ShowCorporateOption() {
   $.blockUI(reloadLoading);
   setTimeout(function () {
     $.ajax({ url: "/Corporate/GetCorporateList", data: {}, type: "GET", datatype: "json" }).done(function (data) {
-      console.log("aw");
+      //console.log("aw");
       ("");
       $("#corporate-option").empty();
       $("#corporate-option").append('<option value="0">-Select Corporate-</option>');
@@ -617,7 +617,7 @@ async function ShowUserCorporateList() {
                 } else {
                     img = data[i].filePath;
                 }
-                //console.log(data[i].AllowNotif);
+                ////console.log(data[i].AllowNotif);
 
                 var tdbuttons = '<div class="data-img">' +
                     "<img src=" + img + " alt=" + data[i].fname + ' width="100%" />' +
@@ -763,7 +763,7 @@ async function ShowUserAdminList() {
                     } else {
                         img = data[i].filePath;
                     }
-                    //console.log(data[i].AllowNotif);
+                    ////console.log(data[i].AllowNotif);
 
                     var tdbuttons = '<div class="data-img">' +
                         "<img src=" + img + " alt=" + data[i].fname + ' width="100%" />' +
@@ -839,7 +839,7 @@ async function ShowCorporateDetails() {
           type: "GET",
           datatype: "json"
       }).done(function (data) {
-        ////console.log(data);
+        //////console.log(data);
           corptable.clear().draw();
       for (var i = 0; i < data.length; i++) {
           var tdbuttons = ' <div>' +

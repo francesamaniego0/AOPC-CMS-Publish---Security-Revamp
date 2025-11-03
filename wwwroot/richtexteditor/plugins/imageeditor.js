@@ -70,7 +70,7 @@ function RTE_Plugin_ImageEditor() {
 		var scriptbase = config.url_base + "/plugins/tui.image-editor/";
 
 		window.rte_image_editor_callback = function (win) {
-			console.log(win);
+			//console.log(win);
 			var options = {
 				includeUI: {
 					loadImage: {

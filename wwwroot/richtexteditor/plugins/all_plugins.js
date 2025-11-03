@@ -23,13 +23,13 @@ function RTE_Plugin_Html2PDF() {
 		editor = argeditor;
 
 		editor.attachEvent("exec_command_html2pdf", function (state, cmd, value) {
-			console.log(state, cmd, value);
+			//console.log(state, cmd, value);
 			obj.DoHtml2PDF();
 			state.returnValue = true;
 		});
 
 		editor.toolbarFactoryMap["html2pdf"] = function (cmd) {
-			//console.log(cmd);
+			////console.log(cmd);
 			var span = editor.createToolbarButton(cmd);
 			span.style.backgroundColor = ''
 			return span;
@@ -95,14 +95,14 @@ function RTE_Plugin_Html2PDF() {
 				}
 
 				var imgblob = dataURLToBlob(dataurl);
-				console.log(imgblob);
+				//console.log(imgblob);
 				var imgurl = URL.createObjectURL(imgblob);
 				img.setAttribute("src", imgurl);
 
 				var prom = win.html2pdf().set(opt).from(win.document.body).outputPdf();
 				prom.then(function (str) {
 
-					console.log("done", str.length)
+					//console.log("done", str.length)
 
 					var bin = new Array(str.length);
 					for (var i = 0; i < str.length; i++)
@@ -233,7 +233,7 @@ function RTE_Plugin_ImageEditor() {
 		var scriptbase = config.url_base + "/plugins/tui.image-editor/";
 
 		window.rte_image_editor_callback = function (win) {
-			console.log(win);
+			//console.log(win);
 			var options = {
 				includeUI: {
 					loadImage: {
@@ -547,13 +547,13 @@ function RTE_Plugin_InsertCode() {
 		editor = argeditor;
 
 		editor.attachEvent("exec_command_insertcode", function (state, cmd, value) {
-			console.log(state, cmd, value);
+			//console.log(state, cmd, value);
 			obj.DoShowDialog();
 			state.returnValue = true;
 		});
 
 		editor.toolbarFactoryMap["insertcode"] = function (cmd) {
-			//console.log(cmd);
+			////console.log(cmd);
 			var span = editor.createToolbarButton(cmd);
 			span.style.backgroundColor = ''
 			return span;
@@ -682,7 +682,7 @@ function RTE_Plugin_InsertEmoji() {
 			}
 			emojidata.push(emojigroup);
 		}
-		//console.log(emojidata);
+		////console.log(emojidata);
 	}
 
 	var obj = this;
@@ -711,7 +711,7 @@ function RTE_Plugin_InsertEmoji() {
 					if (e.target.nodeName == "GSPAN") {
 						editor.closeCurrentPopup();
 						var htmlcode = e.target.getAttribute("htmlcode");
-						console.log("insert emoji", htmlcode)
+						//console.log("insert emoji", htmlcode)
 						editor.insertHTML(htmlcode);
 						editor.collapse(false);
 						editor.focus();
@@ -858,7 +858,7 @@ function RTE_Plugin_InsertEmoji() {
 				var lastactivebtn = null;
 				grouppanel.onscroll = function () {
 					var ptop = grouppanel.getBoundingClientRect().top;
-					console.log(ptop);
+					//console.log(ptop);
 					if (lastactivebtn) lastactivebtn.className = "";
 					for (var bi = 0; bi < tabuibtns.length; bi++) {
 						var btn = tabuibtns[bi];
@@ -1025,7 +1025,7 @@ function RTE_Plugin_InsertTemplate() {
         function CreateDiv(item) {
             var text = item[0];
             var html = item[1];
-            console.log(item, text, html);
+            //console.log(item, text, html);
 
             var divitem = __Append(container, "rte-inserttemplate-image-item", "cursor:pointer;width:256px;height:256px;margin:12px;box-shadow:0 0 8px #ccc;display:flex;align-items:center;justify-content:center;")
             var div = __Append(divitem, "div", "max-width:90%;max-height:90%;overflow:auto;");

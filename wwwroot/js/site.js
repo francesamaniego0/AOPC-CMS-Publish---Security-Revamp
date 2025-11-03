@@ -40,7 +40,7 @@ async function ShowprivilegeList() {
   //            datatype: "json"
   //        })
   //      .done(function (data) {
-  //      ////console.log(data);
+  //      //////console.log(data);
   //      privilegetable.clear().draw();
 
   //      for (var i = 0; i < data.length; i++) {
@@ -102,7 +102,7 @@ async function ShowprivilegeList() {
             processing: true,
             serverSide: true,
             complete: function (xhr) {
-                //console.log(xhr);
+                ////console.log(xhr);
             },
             error: function (err) {
                 alert(err.responseText);
@@ -191,7 +191,7 @@ async function ShowMembershipList() {
   //setTimeout(function () {
   //  $.ajax({ url: "/Corporate/GetMembershipList", data: {}, type: "GET", datatype: "json" })
   //    .done(function (data) {
-  //        //console.log(data);
+  //        ////console.log(data);
   //        membershiptable.clear().draw();
         
   //        for (var i = 0; i < data.length; i++) {
@@ -251,7 +251,7 @@ async function ShowMembershipList() {
             processing: true,
             serverSide: true,
             complete: function (xhr) {
-                //console.log(xhr);
+                ////console.log(xhr);
             },
             error: function (err) {
                 alert(err.responseText);
@@ -428,7 +428,7 @@ async function ShowVendorDetails() {
             processing: true,
             serverSide: true,
             complete: function (xhr) {
-                //console.log(xhr);
+                ////console.log(xhr);
             },
             error: function (err) {
                 alert(err.responseText);
@@ -521,7 +521,7 @@ async function ShowOfferingList() {
   //    type: "GET",
   //    datatype: "json"
   //  }).done(function (data) {
-  //      console.log(data);
+  //      //console.log(data);
   //    offeringtable.clear().draw();
 
   //    for (var i = 0; i < data.length; i++) {
@@ -594,7 +594,7 @@ async function ShowOfferingList() {
             //processing: true,
             //serverSide: true,
             complete: function (xhr) {
-                //console.log(xhr);
+                ////console.log(xhr);
             },
             error: function (err) {
                 alert(err.responseText);
@@ -675,7 +675,7 @@ async function ShowPositionList() {
   //    type: "GET",
   //    datatype: "json"
   //  }).done(function (data) {
-  //      //console.log(data);
+  //      ////console.log(data);
   //    postable.clear().draw();
   //    for (var i = 0; i < data.length; i++) {
 
@@ -704,7 +704,7 @@ async function ShowPositionList() {
             //processing: true,
             //serverSide: true,
             complete: function (xhr) {
-                //console.log(xhr);
+                ////console.log(xhr);
             },
             error: function (err) {
                 alert(err.responseText);
@@ -812,7 +812,7 @@ async function ShowBusinessTypeList() {
             processing: true,
             serverSide: true,
             complete: function (xhr) {
-                //console.log(xhr);
+                ////console.log(xhr);
             },
             error: function (err) {
                 alert(err.responseText);
@@ -889,7 +889,7 @@ async function ShowBusinessList() {
             processing: true,
             serverSide: true,
             complete: function (xhr) {
-                console.log(xhr);
+                //console.log(xhr);
             },
             error: function (err) {
                 alert(err.responseText);
@@ -969,7 +969,7 @@ async function ShowBusinesslocDetails() {
             processing: true,
             serverSide: true,
             complete: function (xhr) {
-                //console.log(xhr);
+                ////console.log(xhr);
             },
             error: function (err) {
                 alert(err.responseText);
@@ -1058,7 +1058,7 @@ async function ShowMostClickStoreList() {
                     sum += data[x].total;
                    
                 } 
-                //console.log(sum);
+                ////console.log(sum);
                 for (var i = 0; i < data.length; i++) {
                     document.getElementById("mcs_top1").innerHTML = "Others";
                     document.getElementById("mcs_perc1").innerHTML = sum.toFixed(2) + " %";
@@ -1125,7 +1125,7 @@ async function ShowGetMostClickedHospitalityList() {
                     sum += data[x].total;
                     
                 } 
-                //console.log(sum);
+                ////console.log(sum);
                 for (var i = 0; i < data.length; i++) {
                     document.getElementById("mch_top1").innerHTML = "Others";
                     document.getElementById("mch_perc1").innerHTML = sum.toFixed(2) + " %";
@@ -1195,7 +1195,7 @@ async function ShowGetMostClickRestaurant() {
                     sum += data[x].total;
                     
                 }
-                //console.log(sum);
+                ////console.log(sum);
                 for (var i = 0; i < data.length; i++) {
                     document.getElementById("mcr_top1").innerHTML = "Others";
                     document.getElementById("mcr_perc1").innerHTML = sum.toFixed(2) + " %";
@@ -1301,7 +1301,7 @@ async function ShowFilteredNewRegistered() {
                 type: "GET",
                 datatype: "json"
             }).done(function (data) {
-                ////console.log(data);
+                //////console.log(data);
                 for (var i = 0; i < data.length; i++) {
                     document.getElementById("new_user").innerHTML = data[i].count;
                     document.getElementById("percent-registered").innerHTML = data[i].percentage.toFixed(2) + " %";
@@ -1382,7 +1382,7 @@ async function ShowGetCallToActions() {
                 type: "GET",
                 datatype: "json"
             }).done(function (data) {
-                //console.log(data);
+                ////console.log(data);
                 cAbtable.clear().draw();
                 for (var i = 0; i < data.length; i++) {
                     $("#cAction_table").dataTable().fnAddData([
@@ -1412,7 +1412,7 @@ async function ShowUserListModal() {
                 type: "GET",
                 datatype: "json"
             }).done(function (data) {
-                //console.log(data);
+                ////console.log(data);
                 oul_table.clear().draw();
                 for (var i = 0; i < data.length; i++) {
                     $("#oul_call").dataTable().fnAddData([
@@ -1432,7 +1432,7 @@ async function ShowGetLineGraphCountList() {
     const ctx = document.getElementById("myChart").getContext("2d");
     const arrdate = new Array();
     const arrval = new Array();
-    //console.log($('#nur').val());
+    ////console.log($('#nur').val());
     $.blockUI(reloadLoading);
     setTimeout(function () {
         $.ajax(
@@ -1449,7 +1449,7 @@ async function ShowGetLineGraphCountList() {
                     arrdate.push(data[i].dateCreated);
                     arrval.push(data[i].count);
                 }
-                //console.log(arrval);
+                ////console.log(arrval);
                 var chartData = {
                     labels: arrdate, // conditions to made
                     datasets: [
@@ -1516,7 +1516,7 @@ async function ShowGalleryArray() {
                 type: "GET",
                 datatype: "json"
             }).done(function (data) {
-                //console.log(data);
+                ////console.log(data);
               
                 $.unblockUI();
             }).fail(function () {

@@ -225,10 +225,10 @@ var FlipClock;
             }
 			
 			
-			console.log(totaltime);
+			//console.log(totaltime);
 			
 		});
-		//console.log(time2);
+		////console.log(time2);
 
 	
 	};
@@ -307,8 +307,8 @@ var FlipClock;
 		 */		
 		 
 		log: function(str) {
-			if(window.console && console.log) {
-				console.log(str);
+			if(window.console && //console.log) {
+				//console.log(str);
 			}
 		},
 		 
@@ -1578,7 +1578,7 @@ var FlipClock;
 				date = this.getDateObject();
 			}
 
-			console.log(date);
+			//console.log(date);
 
 			
 			var hours = date.getHours();
