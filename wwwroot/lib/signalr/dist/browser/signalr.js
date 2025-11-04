@@ -2156,7 +2156,7 @@ var ConsoleLogger = /** @class */ (function () {
                     this.outputConsole.info("[" + new Date().toISOString() + "] " + _ILogger__WEBPACK_IMPORTED_MODULE_0__["LogLevel"][logLevel] + ": " + message);
                     break;
                 default:
-                    // console.debug only goes to attached debuggers in Node, so we use //console.log for Trace and Debug
+                    // console.debug only goes to attached debuggers in Node, so we use console.log for Trace and Debug
                     this.outputConsole.log("[" + new Date().toISOString() + "] " + _ILogger__WEBPACK_IMPORTED_MODULE_0__["LogLevel"][logLevel] + ": " + message);
                     break;
             }

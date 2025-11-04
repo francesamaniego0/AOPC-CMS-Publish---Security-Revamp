@@ -1,15 +1,15 @@
 ﻿async function corporateUserCount() {
     var data = {};
     data.corporateId = corporateId;
-    ////console.log(data);
-    ////console.log(data);
+    //console.log(data);
+    //console.log(data);
     $.ajax({
         url: '/Dashboard/GetAllUserCount',
         data: data,
         type: "POST",
         datatype: "json",
         success: function (data) {
-            ////console.log(data);
+            //console.log(data);
             for (var i = 0; i < data.length; i++) {
                 document.getElementById('registered_employee').innerHTML = data[i].registered;
                 document.getElementById('unregistered_employee').innerHTML = data[i].unregistered;
@@ -23,7 +23,7 @@ async function topRestoFilter() {
     $('#mcr').change(function () {
         var data = {};
         data.day = $('#mcr').val();
-        //////console.log(data); 
+        ////console.log(data); 
 
         $.ajax({
             url: '/Dashboard/PostMostClickRestaurant',
@@ -33,13 +33,13 @@ async function topRestoFilter() {
             type: "POST",
             datatype: "json",
             success: function (response) {
-                ////console.log(response);
+                //console.log(response);
 
                 var sum = 0;
                 for (var x = 3; x < response.length; x++) {
                     sum += response[x].total;
                 }
-                ////console.log(sum);
+                //console.log(sum);
                 for (var i = 0; i < response.length; i++) {
                     document.getElementById("mcr_top1").innerHTML = "Others";
                     document.getElementById("mcr_perc1").innerHTML = sum.toFixed(2) + " %";
@@ -96,7 +96,7 @@ async function topRestoFilter() {
                                 : `${color[key]} ${startingPoint} ${newValue}%,`;
                         oldValue += value.totalVisit;
                     });
-                    //  //console.log(styleString);
+                    //  console.log(styleString);
                     //document
                     //    .querySelector(`${elementContainer}`)
                         //.setAttribute("style", `background: conic-gradient(${styleString}#D3D3D3 0 0%)`);
@@ -105,7 +105,7 @@ async function topRestoFilter() {
                 const populateInfo = (elementContainer, data) => {
                     let element = document.querySelector(`${elementContainer}`);
                     data.map((value, key) => {
-                        // //console.log();
+                        // console.log();
                         element.children[key].children[1].innerText = value.name;
                         element.children[key].children[2].innerText = `${value.totalVisit}%`;
                     });
@@ -148,13 +148,13 @@ function topResto() {
         type: "POST",
         datatype: "json",
         success: function (response) {
-            ////console.log(response);
+            //console.log(response);
 
             var sum = 0;
             for (var x = 3; x < response.length; x++) {
                 sum += response[x].total;
             }
-            ////console.log(sum);
+            //console.log(sum);
             for (var i = 0; i < response.length; i++) {
                 document.getElementById("mcr_top1").innerHTML = "Others";
                 document.getElementById("mcr_perc1").innerHTML = sum.toFixed(2) + " %";
@@ -209,7 +209,7 @@ function topResto() {
                             : `${color[key]} ${startingPoint} ${newValue}%,`;
                     oldValue += value.totalVisit;
                 });
-                //  //console.log(styleString);
+                //  console.log(styleString);
                 //document
                 //    .querySelector(`${elementContainer}`)
                     //.setAttribute("style", `background: conic-gradient(${styleString}#D3D3D3 0 0%)`);
@@ -218,7 +218,7 @@ function topResto() {
             const populateInfo = (elementContainer, data) => {
                 let element = document.querySelector(`${elementContainer}`);
                 data.map((value, key) => {
-                    // //console.log();
+                    // console.log();
                     element.children[key].children[1].innerText = value.name;
                     element.children[key].children[2].innerText = `${value.totalVisit}%`;
                 });
@@ -250,7 +250,7 @@ async function topHotelFilter() {
     $('#mch').change(function () {
         var data = {};
         data.day = $('#mch').val();
-        //////console.log(data);
+        ////console.log(data);
 
         $.ajax({
             url: '/Dashboard/PostMostClickedHospitality',
@@ -260,13 +260,13 @@ async function topHotelFilter() {
             type: "POST",
             datatype: "json",
             success: function (response) {
-                ////console.log(response);
+                //console.log(response);
                 var sum = 0;
                 for (var x = 3; x < response.length; x++) {
                     sum += response[x].total;
 
                 }
-                ////console.log(sum);
+                //console.log(sum);
                 for (var i = 0; i < response.length; i++) {
                     document.getElementById("mch_top1").innerHTML = "Others";
                     document.getElementById("mch_perc1").innerHTML = sum.toFixed(2) + " %";
@@ -318,7 +318,7 @@ async function topHotelFilter() {
                                 : `${color[key]} ${startingPoint} ${newValue}%,`;
                         oldValue += value.totalVisit;
                     });
-                    ////console.log(styleString);
+                    //console.log(styleString);
                     //document
                     //    .querySelector(`${elementContainer}`)
                     //    .setAttribute("style", `background: conic-gradient(${styleString}#D3D3D3 0 0%)`);
@@ -327,7 +327,7 @@ async function topHotelFilter() {
                 const populateInfo = (elementContainer, data) => {
                     let element = document.querySelector(`${elementContainer}`);
                     data.map((value, key) => {
-                        // //console.log();
+                        // console.log();
                         element.children[key].children[1].innerText = value.name;
                         element.children[key].children[2].innerText = `${value.totalVisit}%`;
                     });
@@ -360,7 +360,7 @@ async function topHotelFilter() {
 async function topHotel() {
         var data = {};
         data.day = $('#mch').val();
-        //////console.log(data);
+        ////console.log(data);
 
         $.ajax({
             url: '/Dashboard/PostMostClickedHospitality',
@@ -370,13 +370,13 @@ async function topHotel() {
             type: "POST",
             datatype: "json",
             success: function (response) {
-                ////console.log(response);
+                //console.log(response);
                 var sum = 0;
                 for (var x = 3; x < response.length; x++) {
                     sum += response[x].total;
 
                 }
-                ////console.log(sum);
+                //console.log(sum);
                 for (var i = 0; i < response.length; i++) {
                     document.getElementById("mch_top1").innerHTML = "Others";
                     document.getElementById("mch_perc1").innerHTML = sum.toFixed(2) + " %";
@@ -428,7 +428,7 @@ async function topHotel() {
                                 : `${color[key]} ${startingPoint} ${newValue}%,`;
                         oldValue += value.totalVisit;
                     });
-                    ////console.log(styleString);
+                    //console.log(styleString);
                     //document
                     //    .querySelector(`${elementContainer}`)
                     //    .setAttribute("style", `background: conic-gradient(${styleString}#D3D3D3 0 0%)`);
@@ -437,7 +437,7 @@ async function topHotel() {
                 const populateInfo = (elementContainer, data) => {
                     let element = document.querySelector(`${elementContainer}`);
                     data.map((value, key) => {
-                        // //console.log();
+                        // console.log();
                         element.children[key].children[1].innerText = value.name;
                         element.children[key].children[2].innerText = `${value.totalVisit}%`;
                     });
@@ -471,7 +471,7 @@ async function topStoreFilter() {
     $('#mcs').change(function () {
         var data = {};
         data.day = $('#mcs').val();
-        //////console.log(data);
+        ////console.log(data);
 
         $.ajax({
             url: '/Dashboard/PostMostCickStore',
@@ -481,13 +481,13 @@ async function topStoreFilter() {
             type: "POST",
             datatype: "json",
             success: function (data) {
-                //////console.log(data);
+                ////console.log(data);
                 var sum = 0;
                 for (var x = 3; x < data.length; x++) {
                     sum += data[x].total;
 
                 }
-                ////console.log(sum);
+                //console.log(sum);
                 for (var i = 0; i < data.length; i++) {
                     document.getElementById("mcs_top1").innerHTML = "Others";
                     document.getElementById("mcs_perc1").innerHTML = sum.toFixed(2) + " %";
@@ -540,7 +540,7 @@ async function topStoreFilter() {
                                 : `${color[key]} ${startingPoint} ${newValue}%,`;
                         oldValue += value.totalVisit;
                     });
-                    // //console.log(styleString);
+                    // console.log(styleString);
                     document
                         .querySelector(`${elementContainer}`)
                         .setAttribute("style", `background: conic-gradient(${styleString}#D3D3D3 0 0%)`);
@@ -549,7 +549,7 @@ async function topStoreFilter() {
                 const populateInfo = (elementContainer, data) => {
                     let element = document.querySelector(`${elementContainer}`);
                     data.map((value, key) => {
-                        // //console.log();
+                        // console.log();
                         element.children[key].children[1].innerText = value.name;
                         element.children[key].children[2].innerText = `${value.totalVisit}%`;
                     });
@@ -571,7 +571,7 @@ async function topStoreFilter() {
                         }
                     });
                 };
-                //console.log(topBusinesOutlet);
+                console.log(topBusinesOutlet);
                 pieGraphMovement("#ts-pie-graph", topBusinesOutlet);
             }
         });
@@ -582,7 +582,7 @@ async function topStore() {
 
     var data = {};
     data.day = $('#mcs').val();
-    //////console.log(data);
+    ////console.log(data);
 
     $.ajax({
         url: '/Dashboard/PostMostCickStore',
@@ -592,13 +592,13 @@ async function topStore() {
         type: "POST",
         datatype: "json",
         success: function (data) {
-            //////console.log(data);
+            ////console.log(data);
             var sum = 0;
             for (var x = 3; x < data.length; x++) {
                 sum += data[x].total;
 
             }
-            ////console.log(sum);
+            //console.log(sum);
             for (var i = 0; i < data.length; i++) {
                 document.getElementById("mcs_top1").innerHTML = "Others";
                 document.getElementById("mcs_perc1").innerHTML = sum.toFixed(2) + " %";
@@ -651,7 +651,7 @@ async function topStore() {
                             : `${color[key]} ${startingPoint} ${newValue}%,`;
                     oldValue += value.totalVisit;
                 });
-                // //console.log(styleString);
+                // console.log(styleString);
                 document
                     .querySelector(`${elementContainer}`)
                     .setAttribute("style", `background: conic-gradient(${styleString}#D3D3D3 0 0%)`);
@@ -660,7 +660,7 @@ async function topStore() {
             const populateInfo = (elementContainer, data) => {
                 let element = document.querySelector(`${elementContainer}`);
                 data.map((value, key) => {
-                    // //console.log();
+                    // console.log();
                     element.children[key].children[1].innerText = value.name;
                     element.children[key].children[2].innerText = `${value.totalVisit}%`;
                 });
@@ -682,7 +682,7 @@ async function topStore() {
                     }
                 });
             };
-            ////console.log(topBusinesOutlet);
+            //console.log(topBusinesOutlet);
             pieGraphMovement("#ts-pie-graph", topBusinesOutlet);
         }
     });
@@ -692,7 +692,7 @@ async function topWellnessFilter() {
     $('#mcw').change(function () {
         var data = {};
         data.day = $('#mcw').val();
-        //////console.log(data);
+        ////console.log(data);
 
         $.ajax({
             url: '/Dashboard/PostMostCickWellness',
@@ -702,13 +702,13 @@ async function topWellnessFilter() {
             type: "POST",
             datatype: "json",
             success: function (data) {
-                //////console.log(data);
+                ////console.log(data);
                 var sum = 0;
                 for (var x = 3; x < data.length; x++) {
                     sum += data[x].total;
 
                 }
-                ////console.log(sum);
+                //console.log(sum);
                 for (var i = 0; i < data.length; i++) {
                     document.getElementById("mcw_top1").innerHTML = "Others";
                     document.getElementById("mcw_perc1").innerHTML = sum.toFixed(2) + " %";
@@ -761,7 +761,7 @@ async function topWellnessFilter() {
                                 : `${color[key]} ${startingPoint} ${newValue}%,`;
                         oldValue += value.totalVisit;
                     });
-                    // //console.log(styleString);
+                    // console.log(styleString);
                     document
                         .querySelector(`${elementContainer}`)
                         .setAttribute("style", `background: conic-gradient(${styleString} #D3D3D3 0 0%)`);
@@ -770,7 +770,7 @@ async function topWellnessFilter() {
                 const populateInfo = (elementContainer, data) => {
                     let element = document.querySelector(`${elementContainer}`);
                     data.map((value, key) => {
-                        // //console.log();
+                        // console.log();
                         element.children[key].children[1].innerText = value.name;
                         element.children[key].children[2].innerText = `${value.totalVisit}%`;
                     });
@@ -792,7 +792,7 @@ async function topWellnessFilter() {
                         }
                     });
                 };
-                //console.log(topBusinesOutlet);
+                console.log(topBusinesOutlet);
                 pieGraphMovement("#tw-pie-graph", topBusinesOutlet);
             }
         });
@@ -802,7 +802,7 @@ async function topWellness() {
     
     var data = {};
     data.day = $('#mcw').val();
-    //////console.log(data);
+    ////console.log(data);
 
     $.ajax({
         url: '/Dashboard/PostMostCickWellness',
@@ -812,13 +812,13 @@ async function topWellness() {
         type: "POST",
         datatype: "json",
         success: function (data) {
-            //////console.log(data);
+            ////console.log(data);
             var sum = 0;
             for (var x = 3; x < data.length; x++) {
                 sum += data[x].total;
 
             }
-            ////console.log(sum);
+            //console.log(sum);
             for (var i = 0; i < data.length; i++) {
                 document.getElementById("mcw_top1").innerHTML = "Others";
                 document.getElementById("mcw_perc1").innerHTML = sum.toFixed(2) + " %";
@@ -871,7 +871,7 @@ async function topWellness() {
                             : `${color[key]} ${startingPoint} ${newValue}%,`;
                     oldValue += value.totalVisit;
                 });
-                // //console.log(styleString);
+                // console.log(styleString);
                 document
                     .querySelector(`${elementContainer}`)
                     .setAttribute("style", `background: conic-gradient(${styleString}#D3D3D3 0 0%)`);
@@ -880,7 +880,7 @@ async function topWellness() {
             const populateInfo = (elementContainer, data) => {
                 let element = document.querySelector(`${elementContainer}`);
                 data.map((value, key) => {
-                    // //console.log();
+                    // console.log();
                     element.children[key].children[1].innerText = value.name;
                     element.children[key].children[2].innerText = `${value.totalVisit}%`;
                 });
@@ -902,7 +902,7 @@ async function topWellness() {
                     }
                 });
             };
-            ////console.log(topBusinesOutlet);
+            //console.log(topBusinesOutlet);
             pieGraphMovement("#tw-pie-graph", topBusinesOutlet);
         }
     });
@@ -912,7 +912,7 @@ async function topOfferFilter() {
     $('#mcof').change(function () {
         var data = {};
         data.day = $('#mcof').val();
-        //////console.log(data);
+        ////console.log(data);
 
         $.ajax({
             url: '/Dashboard/PostMostCickOffer',
@@ -922,13 +922,13 @@ async function topOfferFilter() {
             type: "POST",
             datatype: "json",
             success: function (data) {
-                //////console.log(data);
+                ////console.log(data);
                 var sum = 0;
                 for (var x = 3; x < data.length; x++) {
                     sum += data[x].total;
 
                 }
-                ////console.log(sum);
+                //console.log(sum);
                 for (var i = 0; i < data.length; i++) {
                     document.getElementById("mcof_top1").innerHTML = "Others";
                     document.getElementById("mcof_perc1").innerHTML = sum.toFixed(2) + " %";
@@ -981,7 +981,7 @@ async function topOfferFilter() {
                                 : `${color[key]} ${startingPoint} ${newValue}%,`;
                         oldValue += value.totalVisit;
                     });
-                    // //console.log(styleString);
+                    // console.log(styleString);
                     document
                         .querySelector(`${elementContainer}`)
                         .setAttribute("style", `background: conic-gradient(${styleString} #D3D3D3 0 0%)`);
@@ -990,7 +990,7 @@ async function topOfferFilter() {
                 const populateInfo = (elementContainer, data) => {
                     let element = document.querySelector(`${elementContainer}`);
                     data.map((value, key) => {
-                        // //console.log();
+                        // console.log();
                         element.children[key].children[1].innerText = value.name;
                         element.children[key].children[2].innerText = `${value.totalVisit}%`;
                     });
@@ -1012,7 +1012,7 @@ async function topOfferFilter() {
                         }
                     });
                 };
-                //console.log(topBusinesOutlet);
+                console.log(topBusinesOutlet);
                 pieGraphMovement("#tof-pie-graph", topBusinesOutlet);
             }
         });
@@ -1022,7 +1022,7 @@ async function topOffer() {
 
     var data = {};
     data.day = $('#mcof').val();
-    //////console.log(data);
+    ////console.log(data);
 
     $.ajax({
         url: '/Dashboard/PostMostCickOffer',
@@ -1032,13 +1032,13 @@ async function topOffer() {
         type: "POST",
         datatype: "json",
         success: function (data) {
-            //////console.log(data);
+            ////console.log(data);
             var sum = 0;
             for (var x = 3; x < data.length; x++) {
                 sum += data[x].total;
 
             }
-            ////console.log(sum);
+            //console.log(sum);
             for (var i = 0; i < data.length; i++) {
                 document.getElementById("mcof_top1").innerHTML = "Others";
                 document.getElementById("mcof_perc1").innerHTML = sum.toFixed(2) + " %";
@@ -1091,7 +1091,7 @@ async function topOffer() {
                             : `${color[key]} ${startingPoint} ${newValue}%,`;
                     oldValue += value.totalVisit;
                 });
-                // //console.log(styleString);
+                // console.log(styleString);
                 document
                     .querySelector(`${elementContainer}`)
                     .setAttribute("style", `background: conic-gradient(${styleString} #D3D3D3 0 0%)`);
@@ -1100,7 +1100,7 @@ async function topOffer() {
             const populateInfo = (elementContainer, data) => {
                 let element = document.querySelector(`${elementContainer}`);
                 data.map((value, key) => {
-                    // //console.log();
+                    // console.log();
                     element.children[key].children[1].innerText = value.name;
                     element.children[key].children[2].innerText = `${value.totalVisit}%`;
                 });
@@ -1122,7 +1122,7 @@ async function topOffer() {
                     }
                 });
             };
-            ////console.log(topBusinesOutlet);
+            //console.log(topBusinesOutlet);
             pieGraphMovement("#tof-pie-graph", topBusinesOutlet);
         }
     });

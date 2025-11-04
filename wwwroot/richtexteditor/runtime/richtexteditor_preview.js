@@ -1,4 +1,4 @@
 ﻿
 
-//console.log("richtexteditor_preview.js load OK")
+console.log("richtexteditor_preview.js load OK")
 

@@ -97,7 +97,7 @@ function SendNotification() {
         datatype: "json",
         async: false
     }).done(function (data) {
-        //console.log('Successfully Notified...');
+        console.log('Successfully Notified...');
     }).fail(function () {
         alert("There was an Error When Loading Data...");
     });
@@ -141,7 +141,7 @@ function notif() {
                 img_path = '<img style="width:60px;height:60px; " src="' + data[i].imagePath + '" class="notif-img">';
             }
 
-            //console.log(img_path);
+            console.log(img_path);
 
             if (data[i].count > 0) {
 

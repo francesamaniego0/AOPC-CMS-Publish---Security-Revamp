@@ -229,7 +229,7 @@ async function ShowFilter() {
         if (corporateFilter == "") {
             corporateFilter = null;
         }
-        ////console.log(corporateFilter);
+        //console.log(corporateFilter);
     });
 
     //GenderFilterDOM
@@ -290,21 +290,21 @@ async function ShowFilter() {
         document.getElementById("statusAllFilter").checked = false;
 
         statusFilter = document.getElementById("registeredFilter").value;
-        ////console.log(statusFilter);
+        //console.log(statusFilter);
     });
     $('#unregisteredFilter').change(function () {
         document.getElementById("registeredFilter").checked = false;
         document.getElementById("statusAllFilter").checked = false;
 
         statusFilter = document.getElementById("unregisteredFilter").value;
-        ////console.log(statusFilter);
+        //console.log(statusFilter);
     });
     $('#statusAllFilter').change(function () {
         document.getElementById("unregisteredFilter").checked = false;
         document.getElementById("registeredFilter").checked = false;
 
         statusFilter = null;
-        ////console.log(statusFilter);
+        //console.log(statusFilter);
 
     });
 
@@ -335,7 +335,7 @@ async function ShowFilter() {
     $('#user-registration-search').change(function () {
         
         var user = document.getElementById('user-registration-search').value;
-        ////console.log(user);
+        //console.log(user);
         spanval = "";
         companyNameFilter = user;
         getUserRegistration();
@@ -350,9 +350,9 @@ async function getUnregisteredList() {
         searchUnregisteredUser = 0;
     }
     data.corporateId = searchUnregisteredUser;
-    ////console.log(data.name);
+    //console.log(data.name);
     //data.name = "France";
-    ////console.log(data.name);
+    //console.log(data.name);
     $.ajax({
         url: '/Register/UnregisteredList',
         data: {
@@ -361,8 +361,8 @@ async function getUnregisteredList() {
         type: "POST",
         datatype: "json",
         success: function (data) {
-            ////console.log(data);
-            ////console.log(data.length);
+            //console.log(data);
+            //console.log(data.length);
 
             
             var form = document.getElementById('unregisteredEmails');
@@ -417,10 +417,10 @@ async function sendToAll() {
         selectedEmail = Array.from(checkedEmail).map(x => x.value);
         selectedName = Array.from(checkedEmail).map(x => x.name);
         selectedId = Array.from(checkedEmail).map(x => x.dataset.id);
-        ////console.log(selectedId)
+        //console.log(selectedId)
         
         if (checkedEmail.length == 0) {
-            ////console.log("No Name Selected");
+            //console.log("No Name Selected");
             document.getElementById('bulkEmailFormError').style.display = "block";
             setTimeout(function () {
                 document.getElementById('bulkEmailFormError').style.display = "none";
@@ -435,7 +435,7 @@ async function sendToAll() {
             data.Email = selectedEmail;
             data.Name = selectedName;
             data.Id = selectedId;
-            //console.log(data);
+            console.log(data);
             $.ajax({
                 url: '/Register/EmailUnregisterUsers',
                 data: {
@@ -444,8 +444,8 @@ async function sendToAll() {
                 type: "POST",
                 datatype: "json",
                 success: function (data) {
-                    ////console.log(data);
-                    ////console.log("Email Sent!");
+                    //console.log(data);
+                    //console.log("Email Sent!");
                 }
 
             });
@@ -503,7 +503,7 @@ async function UserShowSelectFilter() {
         type: "GET",
         datatype: "json"
     }).done(function (data) {
-        ////console.log(data[0].corporateName);
+        //console.log(data[0].corporateName);
         $("#corporateFilter").empty();
         $("#corporateFilter").append('<option value="">-Select Corporate-</option>');
         for (var i = 0; i < data.length; i++) {
@@ -530,8 +530,8 @@ async function getUserRegistration() {
     data.isVIP = isVipFilter;
     data.status = statusFilter;
     data.page = spanval;
-    ////console.log(data.status);
-    ////console.log(data);
+    //console.log(data.status);
+    //console.log(data);
 
     //$.ajax({
     //    url: '/Register/PostDisplayRegistrationList',
@@ -658,7 +658,7 @@ async function getUserRegistration() {
             processing: true,
             serverSide: true,
             complete: function (xhr) {
-                ////console.log(xhr);
+                //console.log(xhr);
             },
             error: function (err) {
                 //alert(err.responseText);
@@ -810,7 +810,7 @@ async function displayFamilyMember() {
             processing: true,
             serverSide: true,
             complete: function (xhr) {
-                ////console.log(xhr);
+                //console.log(xhr);
             },
             error: function (err) {
                 //alert(err.responseText);
@@ -899,7 +899,7 @@ async function displayFamilyMember() {
             processing: true,
             serverSide: true,
             complete: function (xhr) {
-                ////console.log(xhr);
+                //console.log(xhr);
             },
             error: function (err) {
                 //alert(err.responseText);
@@ -994,8 +994,8 @@ async function editUserRegistration() {
         isFmilyUserVIP = $(this).data("vipstats");
         FamilyUserId = $(this).data("id");
 
-        ////console.log(isFmilyUserVIP);
-        ////console.log(isFmilyUserVIP);
+        //console.log(isFmilyUserVIP);
+        //console.log(isFmilyUserVIP);
         if (isFmilyUserVIP == 1) {
             familyMemberTables.style.display = "block";
             displayFamilyMember();
@@ -1008,7 +1008,7 @@ async function editUserRegistration() {
     $('#corporate-user-table').on('click', '.corp-tbl-edit', function () {
         isFmilyUserVIP = $(this).data("vipstats");
         FamilyUserId = $(this).data("id");
-        ////console.log(isFmilyUserVIP);
+        //console.log(isFmilyUserVIP);
         if (isFmilyUserVIP == 1) {
             corpfamilyMemberTables.style.display = "block";
             displayFamilyMember();
@@ -1105,9 +1105,9 @@ async function getCorporateRegistration() {
     data.isVIP = isVipFilter;
     data.status = statusFilter;
     data.page = 1;
-    ////console.log(data);
+    //console.log(data);
     {//data.page = spanval;
-    ////console.log(data);
+    //console.log(data);
     //$.ajax({
     //    url: '/Register/PostDisplayCorporateList',
     //    //async: false,
@@ -1117,7 +1117,7 @@ async function getCorporateRegistration() {
     //    type: "POST",
     //    datatype: "json",
     //    success: function (data) {
-    //        ////console.log(data);
+    //        //console.log(data);
     //
     //        //prev = data[0].prevPage;
     //        //next = data[0].nextPage;
@@ -1125,8 +1125,8 @@ async function getCorporateRegistration() {
     //        //spanval = data[0].currentPage;
     //
     //
-    //        ////console.log(data[0].items.length);
-    //        ////console.log(data[0]);
+    //        //console.log(data[0].items.length);
+    //        //console.log(data[0]);
     //        corusertable.clear().draw();
     //        for (var i = 0; i < data.length; i++) {
     //
@@ -1233,7 +1233,7 @@ async function getCorporateRegistration() {
             processing: true,
             serverSide: true,
             complete: function (xhr) {
-                ////console.log(xhr);
+                //console.log(xhr);
             },
             error: function (err) {
                 //alert(err.responseText);
@@ -1375,7 +1375,7 @@ async function getOysterAdmin() {
             processing: true,
             serverSide: true,
             complete: function (xhr) {
-                ////console.log(xhr);
+                //console.log(xhr);
             },
             error: function (err) {
                 //alert(err.responseText);
@@ -1467,7 +1467,7 @@ function createUser() {
     var imgCheck = $("#img-check").val().replace("https://www.alfardanoysterprivilegeclub.com/assets/img/", "").replace("%20", " ");
     var data = {};
     var fileUpload = $("#img").get(0);
-    //console.log(imgCheck);
+    console.log(imgCheck);
     var files = fileUpload.files;
     const formData = new FormData();
     if (files[0]) {
@@ -1489,14 +1489,14 @@ function createUser() {
         }
     }
     if ($("#checkp").is(':checked')) {
-        ////console.log("check");
+        //console.log("check");
         allownotif = 1;
     }
     else {
-        ////console.log("umcheck");
+        //console.log("umcheck");
         allownotif = 0;
     }
-    // //console.log(filename);
+    // console.log(filename);
     var data = {};
     data.id = i_id;
     data.EmployeeID = $('#empid').val();

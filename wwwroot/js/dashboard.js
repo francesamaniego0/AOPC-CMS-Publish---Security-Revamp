@@ -98,8 +98,8 @@ async function getCountryList() {
 
         try {
             const config = JSON.parse(data);
-            //console.log(config.Country); // Example: log all countries
-            //console.log(config.ConnectionStrings.Constrings); // Example: DB connection string
+            console.log(config.Country); // Example: log all countries
+            console.log(config.ConnectionStrings.Constrings); // Example: DB connection string
         } catch (parseError) {
             console.error('Invalid JSON:', parseError);
         }
@@ -196,7 +196,7 @@ async function getComponyInformation() {
             processing: true,
             serverSide: true,
             complete: function (xhr) {
-                 ////console.log(xhr);
+                 //console.log(xhr);
             },
             error: function (err) {
                 alert(err.responseText);
@@ -257,7 +257,7 @@ async function SearchComponyInformation() {
         $("#cInformation_prev").css("color", "#c89328");
     }
     if (next == 0) {
-        ////console.log(next);
+        //console.log(next);
 
         $("#cInformation_next").attr("disabled", true);
         $("#cInformation_next").css("color", "gray").css("pointer-event", "none");
@@ -279,14 +279,14 @@ async function SearchComponyInformation() {
     $('#cInformation_next').click(function () {
         if (next != 0) {
             spanval++;
-            ////console.log("Next page " + (next));
-            ////console.log("Next is Pressed " + (spanval));
+            //console.log("Next page " + (next));
+            //console.log("Next is Pressed " + (spanval));
             getComponyInformation();
         }
         
         //next = parseInt(next);
         //$(".tbl-pagenumber").removeClass("active-page");
-        ////console.log(next);
+        //console.log(next);
         //$("#spanId" + (next)).addClass("active-page");
         //paginateAuditTrail(next);
         
@@ -294,13 +294,13 @@ async function SearchComponyInformation() {
     $('#cInformation_previous').click(function () {
         if (prev != 0) {
             spanval--;
-            ////console.log("Next page " + (prev));
-            ////console.log("Next is Pressed " + (spanval));
+            //console.log("Next page " + (prev));
+            //console.log("Next is Pressed " + (spanval));
             getComponyInformation();
         }
         //prev = parseInt(prev);
         //$(".tbl-pagenumber").removeClass("active-page");
-        ////console.log(prev);
+        //console.log(prev);
         //$("#spanId" + (prev)).addClass("active-page");
         //paginateAuditTrail(prev);
 
@@ -489,7 +489,7 @@ async function downloadCompanyInfortmation() {
                 totalUserCount = true;
             }
             
-            ////console.log(data);
+            //console.log(data);
             //data.Registered = registered;
             //data.unregistered = unregistered;
             //data.registeredVIP = vip;
@@ -510,7 +510,7 @@ async function downloadCompanyInfortmation() {
             //    //type: "POST",
             //    //datatype: "json",
             //    success: function (data) {
-            //        ////console.log("data is imported: " + data)
+            //        //console.log("data is imported: " + data)
             //        location.replace("/Dashboard/ExportExcelTest");
             //    }
             //});
@@ -536,7 +536,7 @@ async function postNewUser() {
     data.day = day;
     data.startdate = startdate;
     data.enddate = enddate;
-    ////console.log(data);
+    //console.log(data);
     $.ajax({
         url: '/Dashboard/PostCountAllUser',
         data: {
@@ -545,7 +545,7 @@ async function postNewUser() {
         type: "POST",
         datatype: "json",
         success: function (response) {
-            ////console.log(response);
+            //console.log(response);
 
             for (var i = 0; i < response.length; i++) {
                 arrdate.push(response[i].date);
@@ -553,7 +553,7 @@ async function postNewUser() {
                 document.getElementById("new_user").innerHTML = response[0].count;
                 document.getElementById("percent-registered").innerHTML = response[0].percentage.toFixed(2) + " %";
             }
-            ////console.log(arrval);
+            //console.log(arrval);
             var chartData = {
                 labels: arrdate, // conditions to made
                 datasets: [
@@ -612,7 +612,7 @@ async function runTopRestoChart() {
     data.day = restoday;
     data.startdate = startdate;
     data.enddate = enddate;
-    ////console.log(data);
+    //console.log(data);
     $.ajax({
         url: '/Dashboard/PostMostClickRestaurant',
         data: {
@@ -621,7 +621,7 @@ async function runTopRestoChart() {
         type: "POST",
         datatype: "json",
         success: function (response) {
-            ////console.log(response);
+            //console.log(response);
             var sum = 0;
             for (var x = 3; x < response.length; x++) {
                 sum += response[x].total;
@@ -771,7 +771,7 @@ async function viewRestoDetails() {
             processing: true,
             serverSide: true,
             complete: function (xhr) {
-                ////console.log(xhr);
+                //console.log(xhr);
             },
             error: function (err) {
                 //alert(err.responseText);
@@ -944,7 +944,7 @@ async function viewHotelDetails() {
                 processing: true,
                 serverSide: true,
                 complete: function (xhr) {
-                    ////console.log(xhr);
+                    //console.log(xhr);
                 },
                 error: function (err) {
                     //alert(err.responseText);
@@ -992,7 +992,7 @@ async function runTopStoreChart() {
         type: "POST",
         datatype: "json",
         success: function (response) {
-            ////console.log(response);
+            //console.log(response);
 
             var sum = 0;
             for (var x = 3; x < response.length; x++) {
@@ -1119,7 +1119,7 @@ async function viewStoreDetails() {
                 processing: true,
                 serverSide: true,
                 complete: function (xhr) {
-                    ////console.log(xhr);
+                    //console.log(xhr);
                 },
                 error: function (err) {
                     //alert(err.responseText);
@@ -1165,7 +1165,7 @@ async function runTopWellnessChart() {
         type: "POST",
         datatype: "json",
         success: function (response) {
-            ////console.log(response);
+            //console.log(response);
 
             var sum = 0;
             for (var x = 3; x < response.length; x++) {
@@ -1292,7 +1292,7 @@ async function viewWellnessDetails() {
                 processing: true,
                 serverSide: true,
                 complete: function (xhr) {
-                    ////console.log(xhr);
+                    //console.log(xhr);
                 },
                 error: function (err) {
                     //alert(err.responseText);
@@ -1339,7 +1339,7 @@ async function runTopOfferChart() {
         type: "POST",
         datatype: "json",
         success: function (response) {
-            ////console.log(response);
+            //console.log(response);
 
             var sum = 0;
             for (var x = 3; x < response.length; x++) {
@@ -1466,7 +1466,7 @@ async function viewOfferDetails() {
                 processing: true,
                 serverSide: true,
                 complete: function (xhr) {
-                    ////console.log(xhr);
+                    //console.log(xhr);
                 },
                 error: function (err) {
                     //alert(err.responseText);
@@ -1531,7 +1531,7 @@ async function PostClickCountTop2() {
     //            alert("There was an Error When Loading Data...");
     //        });
     //}, 100);
-    ////console.log(data);
+    //console.log(data);
     if (DataTable.isDataTable('#tbl_cnt')) {
         cntTable.destroy();
     }
@@ -1547,7 +1547,7 @@ async function PostClickCountTop2() {
             processing: true,
             serverSide: true,
             complete: function (xhr) {
-                // //console.log(xhr);
+                // console.log(xhr);
             },
             error: function (err) {
                 //alert(err.responseText);
@@ -1588,7 +1588,7 @@ async function PostCallToAction() {
     data.startdate = ctastartdate;
     data.enddate = ctaendtdate;
     data.category = cat;
-    ////console.log(data);
+    //console.log(data);
     //$.ajax({
     //    url: '/Dashboard/PostCallToActions',
     //    data: {
@@ -1597,7 +1597,7 @@ async function PostCallToAction() {
     //    type: "POST",
     //    datatype: "json",
     //    success: function (data) {
-    //        ////console.log(data);
+    //        //console.log(data);
     //        //cAbtable.clear().draw();
     //        for (var i = 0; i < data.length; i++) {
     //            $("#cAction_table").dataTable().fnAddData([
@@ -1625,7 +1625,7 @@ async function PostCallToAction() {
             processing: true,
             serverSide: true,
             complete: function (xhr) {
-                 ////console.log(xhr);
+                 //console.log(xhr);
             },
             error: function (err) {
                 //alert(err.responseText);
@@ -1863,7 +1863,7 @@ async function dateFilter() {
         wellnessday = 0;
         offerday = 0;
         document.getElementById('cta-day').value = 0;
-        ////console.log(type);
+        //console.log(type);
         if (type == 1) {
             postNewUser();
         }
@@ -1992,7 +1992,7 @@ async function dateFilter() {
         ctastartdate = null;
         ctaenddate = null;
         ctaday = day;
-        //console.log(ctastartdate + " " + ctaenddate + " " + ctaday);
+        console.log(ctastartdate + " " + ctaenddate + " " + ctaday);
         PostCallToAction();
     });
      
@@ -2016,7 +2016,7 @@ async function dateFilter() {
 //            type: "POST",
 //            datatype: "json"
 //        }).done(function (data) {
-//            //console.log(data);
+//            console.log(data);
 //            for (var i = 0; i < data.length; i++) {
 //                document.getElementById("all-user").innerHTML = data[i].count;
 //            }
