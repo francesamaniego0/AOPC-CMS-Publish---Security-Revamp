@@ -122,7 +122,8 @@ async function ShowprivilegeList() {
                         row.id + '"  data-descrip="' +
                         row.description + '" data-btypeid="' +
                         row.businessTypeID + '" data-imgfile="' +
-                        row.imgUrl + '" data-mechanics="' +
+                        row.imgUrl + '" data-logoFile="' +
+                        row.logoUrl + '" data-mechanics="' +
                         mechanics + '" data-nexpr="' +
                         row.noExpiry + '" data-title="' +
                         row.title + '"  data-tmc="' +
@@ -134,7 +135,8 @@ async function ShowprivilegeList() {
                         row.id + '"  data-descrip="' +
                         row.description + '" data-btypeid="' +
                         row.businessTypeID + '" data-imgfile="' +
-                        row.imgUrl + '" data-mechanics="' +
+                        row.imgUrl + '" data-logoFile="' +
+                        row.logoUrl + '" data-mechanics="' +
                         mechanics + '" data-nexpr="' +
                         row.noExpiry + '" data-title="' +
                         row.title + '"  data-tmc="' +
