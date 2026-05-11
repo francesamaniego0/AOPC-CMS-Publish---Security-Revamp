@@ -143,10 +143,19 @@
 }
 
 .list-title {
-  width: 100%;
-  width: 100%;
-  background-color: var(--dark);
-  height: 40px;
-  color: var(--light);
-  padding: 10px;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--dark);
+    height: 40px;
+    color: var(--light);
+    padding: 10px 12px;
+    border-bottom: 1px solid #e6e6e6;
+}
+.phone-error {
+    font-size: 11px;
+    margin-top: 3px;
 }

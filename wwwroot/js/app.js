@@ -1,4 +1,4 @@
-let darkmode = window.localStorage.getItem("darkmode");
+﻿let darkmode = window.localStorage.getItem("darkmode");
 let toggle = document.querySelector("#darkmode");
 
 if (darkmode === "true") {
@@ -1083,7 +1083,440 @@ async function ShowCorporateDetails() {
                 ]
             });
         }
+window.AuditUI = (function () {
 
+    const ignoreFields = ['Password', 'Jwtoken'];
 
-    
- 
+    let currentRows = [];
+    let filteredRows = [];
+    let currentContainer = null;
+
+    let currentPage = 1;
+    let pageSize = 5;
+
+    // =========================
+    // FIELD MAPPINGS
+    // =========================
+    const fieldMappings = {
+        Active: {
+            5: '<span class="text-success">Active</span>',
+            6: '<span class="text-danger">Inactive</span>'
+        }
+    };
+
+    function mapFieldValue(field, value) {
+        if (value === null || value === undefined) return '';
+        if (fieldMappings[field] && fieldMappings[field][value] !== undefined) {
+            return fieldMappings[field][value];
+        }
+        return value;
+    }
+
+    // =========================
+    // LOAD DATA
+    // =========================
+    function load(options) {
+
+        let config = {
+            url: '/CMS/GetAuditHistory',
+            entityName: '',
+            page: 1,
+            pageSize: 50,
+            container: '#audit-modal-container'
+        };
+
+        config = { ...config, ...options };
+        currentContainer = config.container;
+
+        $.ajax({
+            url: config.url,
+            type: 'GET',
+            data: {
+                entityName: config.entityName,
+                page: config.page,
+                pageSize: config.pageSize
+            },
+            success: function (res) {
+
+                if (!res || !res.success) {
+                    $(config.container).html('<div class="audit-empty">No audit data</div>');
+                    return;
+                }
+
+                currentRows = res.data.records || [];
+                filteredRows = [...currentRows];
+
+                currentPage = 1;
+
+                renderAll(config.container);
+                bindFilters(config.container);
+                bindPageSize();
+            },
+            error: function () {
+                $(config.container).html('<div class="audit-empty">Error loading audit</div>');
+            }
+        });
+    }
+
+    // =========================
+    // MAIN RENDER (Timeline + Pagination)
+    // =========================
+    function renderAll(container) {
+
+        let start = (currentPage - 1) * pageSize;
+        let end = start + pageSize;
+
+        let pageData = filteredRows.slice(start, end);
+
+        renderTimeline(pageData, container);
+        renderPagination(container);
+    }
+
+    // =========================
+    // TIMELINE
+    // =========================
+    function renderTimeline(records, container) {
+
+        if (!records || records.length === 0) {
+            $(container).html('<div class="audit-empty">No records found</div>');
+            return;
+        }
+
+        let html = `<div class="audit-timeline">`;
+
+        records.forEach(item => {
+
+            let oldObj = parse(item.oldValues);
+            let newObj = parse(item.newValues);
+
+            html += `
+            <div class="audit-item">
+                <div class="audit-dot"></div>
+
+                <div class="audit-card">
+
+                    <div class="audit-header">
+                        <div class="audit-user">
+                            <strong>${item.changedBy || ''}</strong>
+                        </div>
+                        <div class="audit-date">
+                            ${formatDate(item.changedAt)}
+                        </div>
+                    </div>
+
+                    <div class="audit-status">
+                        <span class="badge new">${item.newStatus || item.actionType || ''}</span>
+                    </div>
+
+                    <div class="audit-message">
+                        ${item.message || ''}
+                    </div>
+
+                    <div class="audit-details">
+                        ${buildChanges(oldObj, newObj)}
+                    </div>
+
+                </div>
+            </div>
+            `;
+        });
+
+        html += `</div>`;
+
+        $(container).html(html);
+    }
+
+    // =========================
+    // PAGINATION UI
+    // =========================
+    function renderPagination(container) {
+
+        let totalPages = Math.ceil(filteredRows.length / pageSize);
+        if (totalPages <= 1) return;
+
+        let html = `<div class="audit-pagination">`;
+
+        html += `<button class="page-btn" data-page="${currentPage - 1}" ${currentPage === 1 ? 'disabled' : ''}>Prev</button>`;
+
+        for (let i = 1; i <= totalPages; i++) {
+            html += `
+                <button class="page-btn ${i === currentPage ? 'active' : ''}" data-page="${i}">
+                    ${i}
+                </button>
+            `;
+        }
+
+        html += `<button class="page-btn" data-page="${currentPage + 1}" ${currentPage === totalPages ? 'disabled' : ''}>Next</button>`;
+
+        html += `</div>`;
+
+        $('.audit-pagination-container').html(html);
+
+        bindPagination(container, totalPages);
+    }
+
+    function bindPagination(container, totalPages) {
+
+        $(document).off('click.auditPage')
+            .on('click.auditPage', '.page-btn', function () {
+
+                let page = parseInt($(this).data('page'));
+
+                if (page < 1 || page > totalPages) return;
+
+                currentPage = page;
+                renderAll(container);
+            });
+    }
+
+    // =========================
+    // FILTERS
+    // =========================
+    function bindFilters(container) {
+
+        function applyFilters() {
+
+            let searchVal = ($('#audit-search').val() || '').toLowerCase();
+            let dateVal = $('#audit-date').val();
+
+            filteredRows = currentRows.filter(item => {
+
+                let matchSearch = true;
+                let matchDate = true;
+
+                if (searchVal) {
+                    matchSearch = JSON.stringify(item)
+                        .toLowerCase()
+                        .includes(searchVal);
+                }
+
+                if (dateVal) {
+                    let d = new Date(item.changedAt);
+                    if (isNaN(d.getTime())) return false;
+
+                    let formatted =
+                        d.getFullYear() + '-' +
+                        String(d.getMonth() + 1).padStart(2, '0') + '-' +
+                        String(d.getDate()).padStart(2, '0');
+
+                    matchDate = formatted === dateVal;
+                }
+
+                return matchSearch && matchDate;
+            });
+
+            currentPage = 1;
+            renderAll(container);
+        }
+
+        $(document)
+            .off('keyup.audit', '#audit-search')
+            .on('keyup.audit', '#audit-search', applyFilters);
+
+        $(document)
+            .off('change.audit', '#audit-date')
+            .on('change.audit', '#audit-date', applyFilters);
+    }
+
+    // =========================
+    // PAGE SIZE
+    // =========================
+    function bindPageSize() {
+
+        $(document).off('change.auditSize')
+            .on('change.auditSize', '#audit-page-size', function () {
+
+                pageSize = parseInt($(this).val());
+                currentPage = 1;
+                renderAll(currentContainer);
+            });
+    }
+    function formatLabel(key) {
+        return key.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase());
+    }
+    // =========================
+    // CHANGES
+    // =========================
+    function buildChanges(oldObj, newObj) {
+
+        let rows = '';
+        const keys = Object.keys(newObj || {});
+
+        keys.forEach(key => {
+
+            if (ignoreFields.includes(key)) return;
+
+            let oldRaw = oldObj ? oldObj[key] : '';
+            let newRaw = newObj[key];
+
+            let oldVal = mapFieldValue(key, oldRaw);
+            let newVal = mapFieldValue(key, newRaw);
+
+            if (oldRaw !== newRaw) {
+
+                rows += `
+                <tr>
+                    <td class="field">${formatLabel(key)}</td>
+                    <td class="before">${formatValue(oldVal)}</td>
+                    <td class="after">${formatValue(newVal)}</td>
+                </tr>
+            `;
+            }
+        });
+
+        // no changes
+        if (!rows) return '';
+
+        return `
+        <div class="audit-table-wrapper">
+            <table class="audit-table">
+                <thead>
+                    <tr>
+                        <th>Field</th>
+                        <th>Old Value</th>
+                        <th>New Value</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    ${rows}
+                </tbody>
+            </table>
+        </div>
+    `;
+    }
+    // =========================
+    // HELPERS
+    // =========================
+    function parse(json) {
+        try { return JSON.parse(json); }
+        catch { return {}; }
+    }
+
+    function formatValue(val) {
+        if (val === null || val === undefined) return '';
+        let str = val.toString();
+        return str.length > 80 ? str.substring(0, 80) + '...' : str;
+    }
+
+    function formatDate(dateStr) {
+        if (!dateStr) return '';
+        return new Date(dateStr).toLocaleString();
+    }
+
+    return { load };
+
+})();
+(function ($) {
+
+    $.fn.contactMaskPH = function () {
+
+        return this.each(function () {
+
+            const $input = $(this);
+
+            let $error = $("<small class='contact-error'></small>").css({
+                color: "red",
+                display: "none",
+                fontSize: "11px",
+                marginTop: "3px"
+            });
+
+            $input.after($error);
+
+            function clean(value) {
+                return value.replace(/\D/g, "");
+            }
+
+            function isMobile(value) {
+                return /^(\+63|0)?9/.test(value);
+            }
+
+            function formatMobile(value) {
+                value = value.replace(/^63/, "0"); // normalize +63 → 0
+                value = value.substring(0, 11);
+
+                if (value.length <= 4) return value;
+                if (value.length <= 7)
+                    return value.substring(0, 4) + "-" + value.substring(4);
+
+                return value.substring(0, 4) + "-" +
+                    value.substring(4, 7) + "-" +
+                    value.substring(7);
+            }
+
+            function formatLandline(value) {
+                value = value.substring(0, 10);
+
+                if (value.length <= 3) return value;
+                if (value.length <= 6)
+                    return value.substring(0, 3) + "-" + value.substring(3);
+
+                return value.substring(0, 3) + "-" +
+                    value.substring(3, 6) + "-" +
+                    value.substring(6);
+            }
+
+            function validate(value) {
+                return {
+                    mobile: /^09\d{9}$/.test(value),
+                    landline: /^\d{9,10}$/.test(value)
+                };
+            }
+
+            function updateUI(raw, formatted) {
+
+                const v = validate(raw);
+
+                if (!raw) {
+                    $input.css("border", "");
+                    $error.hide();
+                    return;
+                }
+
+                if (isMobile(raw)) {
+                    if (!v.mobile) {
+                        $input.css("border", "1px solid red");
+                        $error.text("Invalid mobile number (0917-123-4567)").show();
+                    } else {
+                        $input.css("border", "1px solid #28a745");
+                        $error.hide();
+                    }
+                } else {
+                    if (!v.landline) {
+                        $input.css("border", "1px solid red");
+                        $error.text("Invalid telephone number (074-442-1234)").show();
+                    } else {
+                        $input.css("border", "1px solid #28a745");
+                        $error.hide();
+                    }
+                }
+            }
+
+            // INPUT EVENT
+            $input.on("input", function () {
+
+                let raw = clean($input.val());
+
+                let formatted = isMobile(raw)
+                    ? formatMobile(raw)
+                    : formatLandline(raw);
+
+                $input.val(formatted);
+                updateUI(raw, formatted);
+            });
+
+            // PASTE PROTECTION
+            $input.on("paste", function (e) {
+                let paste = (e.originalEvent.clipboardData || window.clipboardData)
+                    .getData("text");
+
+                if (!/^\+?\d+$/.test(paste.replace(/\s|-/g, ""))) {
+                    e.preventDefault();
+                }
+            });
+
+        });
+
+    };
+
+})(jQuery);

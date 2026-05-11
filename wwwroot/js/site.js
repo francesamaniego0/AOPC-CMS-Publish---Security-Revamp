@@ -17,16 +17,16 @@ function formatDate(dateString) {
     return `${year}-${month}-${day}`;
 }
 function notifyMsg(title, msg, color, icon) {
-  iziToast.show({
-    title: title,
-    message: msg,
-    theme: "light",
-    color: color,
-    icon: icon,
-    transitionIn: "bounceInDown",
-    transitionOut: "flipOutX",
-    position: "topCenter",
-  });
+    iziToast.show({
+        title: title || '',
+        message: (msg ? msg.toString() : 'No message provided'),
+        theme: "light",
+        color: color || 'blue',
+        icon: icon || '',
+        transitionIn: "bounceInDown",
+        transitionOut: "flipOutX",
+        position: "topCenter"
+    });
 }
 
 async function ShowprivilegeList() {
@@ -1281,7 +1281,7 @@ async function ShowSupportcount() {
                 type: "GET",
                 datatype: "json"
             }).done(function (data) {
-                // 
+                //console.log(daata);
                 for (var i = 0; i < data.length; i++) {
                     document.getElementById("supcount").innerHTML = data[i].supportcount;
                 }

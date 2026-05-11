@@ -2025,3 +2025,34 @@ async function dateFilter() {
 //            alert("There was an Error When Loading Data...CountAllUser");
 //        });
 //}
+
+async function ShowAllUserCount() {
+    $.ajax({
+        url: "/Dashboard/GetCountAllUser",
+        type: "GET",
+        dataType: "json"
+    }).done(function (data) {
+        if (!data || data.length === 0) return;
+        document.getElementById("all-user").innerHTML = data[0].count;
+    }).fail(function (xhr) {
+        console.warn("ShowAllUserCount failed:", xhr.status, xhr.statusText);
+    });
+}
+
+async function ShowSupportcount() {
+    $.ajax({
+        url: "/Dashboard/GetSupportCount",
+        type: "GET",
+        dataType: "json"
+    }).done(function (data) {
+        if (!data || data.length === 0) return;
+        var count = data[0].supportcount;
+        //alert(count);
+        //if (count > 0) {
+        //    document.getElementById("supcount").innerHTML = count;
+        //}
+        document.getElementById("supcount").innerHTML = count;
+    }).fail(function (xhr) {
+        console.warn("ShowSupportcount failed:", xhr.status, xhr.statusText);
+    });
+}

@@ -1,21 +1,22 @@
 ﻿async function corporateUserCount() {
     var data = {};
     data.corporateId = corporateId;
-    //console.log(data);
-    //console.log(data);
     $.ajax({
         url: '/Dashboard/GetAllUserCount',
-        data: data,
+        data: JSON.stringify(data),
+        contentType: "application/json",
         type: "POST",
-        datatype: "json",
+        dataType: "json",
         success: function (data) {
-            //console.log(data);
             for (var i = 0; i < data.length; i++) {
                 document.getElementById('registered_employee').innerHTML = data[i].registered;
                 document.getElementById('unregistered_employee').innerHTML = data[i].unregistered;
                 document.getElementById('total_vip').innerHTML = data[i].isVIP;
                 document.getElementById('remaining_vip_slots').innerHTML = data[i].remainingVIP;
             }
+        },
+        error: function (xhr) {
+            console.warn("corporateUserCount failed:", xhr.status, xhr.statusText);
         }
     });
 }

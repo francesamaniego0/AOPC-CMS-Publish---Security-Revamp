@@ -4,3 +4,83 @@ main {
   display: flex;
   flex-wrap: wrap;
 }
+.audit-card {
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    margin-bottom: 12px;
+    overflow: hidden;
+    background: #fff;
+}
+
+.audit-header {
+    background: #f4f6f8;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+}
+
+.audit-body {
+    padding: 10px;
+}
+
+.audit-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+}
+
+    .audit-table th {
+        background: #fafafa;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .audit-table td, .audit-table th {
+        padding: 6px;
+        border: 1px solid #eee;
+    }
+
+.old {
+    background: #ffe6e6;
+    color: #b30000;
+}
+
+.new {
+    background: #e6ffe6;
+    color: #006600;
+}
+
+.field {
+    font-weight: bold;
+}
+
+.audit-date {
+    font-size: 11px;
+    color: #888;
+}
+
+.badge {
+    padding: 2px 6px;
+    border-radius: 4px;
+    margin-right: 5px;
+    font-size: 11px;
+    color: white;
+}
+
+    .badge.update {
+        background: #007bff;
+    }
+
+    .badge.insert {
+        background: #28a745;
+    }
+
+    .badge.delete {
+        background: #dc3545;
+    }
+
+.audit-empty {
+    padding: 15px;
+    text-align: center;
+    color: #999;
+}
