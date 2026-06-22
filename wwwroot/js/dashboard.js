@@ -607,7 +607,7 @@ async function postNewUser() {
     });
 }
 async function runTopRestoChart() {
-
+    //alert()
     var data = {};
     data.day = restoday;
     data.startdate = startdate;
